@@ -92,32 +92,23 @@ $(document).ready(function(){
   });
 
   // Loadmore blog__cards feature using jquery
-$(document).ready(function() {
-  var blog__cardsToShow = 4; // Initial number of blog__cards to show
+  $(document).ready(function(){
+    // Hide all blog cards except the first 4
+    $(".blog__card").slice(4).hide();
   
-  function updateblog__cardsVisibility() {
-    $(".blog__card").removeClass("hidden");
-    $(".blog__card:gt(" + (blog__cardsToShow - 1) + ")").addClass("hidden");
-  }
-
-  $(window).on("resize", function() {
-    var windowWidth = $(window).width();
-    if (windowWidth < 768) {
-      blog__cardsToShow = 2; // Adjust Default the number of blog__cards to show for smaller screens
-    } else if (windowWidth < 992) {
-      blog__cardsToShow = 4; // Adjust Default the number of blog__cards to show for medium screens
-    } else {
-      blog__cardsToShow = 4; // Default number of blog__cards to show for larger screens
-    }
-    updateblog__cardsVisibility();
-  }).trigger("resize");
-
-  $("#loadMoreBtn").on("click", function() {
-    $(".blog__card.hidden").removeClass("hidden");
-    $(this).hide(); // Hide the load more button after all blog__cards are loaded
+    // When the "Load More" button is clicked
+    $("#loadMoreBtn").on("click", function(e){
+      e.preventDefault();
+  
+      // Select the next 4 hidden blog cards and slide them down
+      $(".blog__card:hidden").slice(0, 4).slideDown();
+  
+      // If there are no more hidden blog cards, update the button text
+      if($(".blog__card:hidden").length === 0) {
+        $("#loadMoreBtn").text("No More Content");
+      }
+    });
   });
-});
-
 
 
 
