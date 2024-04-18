@@ -1,5 +1,8 @@
 # Gym-Template
 
+Preview Link:
+https://fitphysique-webdesign.netlify.app/
+
 Features:
 
 1.Scroll Reveal animation using library <br>
